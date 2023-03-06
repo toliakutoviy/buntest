@@ -6,7 +6,7 @@ const server = Bun.serve({
         if (req.url.includes(`/metrics`)) {
             // Return all metrics the Prometheus exposition format
             return new Response(`${metricName}{app="example-nodejs-app"} ${counter}`);
-        } else if(req.url !== 'http://localhost:3000/favicon.ico'){
+        } else if(!req.url.includes('/favicon.ico')){
             counter++;
         }
         return new Response(`Bun!`);
