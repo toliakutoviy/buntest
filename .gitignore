@@ -1,5 +1,5 @@
 .idea
-/bun.lockb
+bunServer/bun.lockb
 # Logs
 logs
 *.log

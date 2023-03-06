@@ -6,6 +6,5 @@
     "bun-types": "^0.5.0"
   },
   "dependencies": {
-    "prom-client": "^14.1.1"
   }
 }
