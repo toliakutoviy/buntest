@@ -6,5 +6,6 @@
     "bun-types": "^0.5.0"
   },
   "dependencies": {
+    "url-parse": "^1.5.10"
   }
 }
