@@ -27,10 +27,29 @@ const sort = array => {
     }
     return arr
 }
-
 const queryParser = (url) => {
     const { query } = new Url(url);
     return query.split('=')[1].split(',')
+}
+
+const bblSort = (arr) => {
+    for(let i = 0; i < arr.length; i++){
+        for(let j = 0; j < ( arr.length - i -1 ); j++){
+            if(arr[j] > arr[j+1]){
+                let temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j+1] = temp
+            }
+        }
+    }
+}
+
+const randomArray = n => {
+    const r = [];
+    for (let i = 0; i < n; i++) {
+        r.push(Math.floor(Math.random()*n))
+    }
+    return r
 }
 
 const server = http.createServer(async (req, res) => {
@@ -40,9 +59,9 @@ const server = http.createServer(async (req, res) => {
     } else if(req.url !== '/favicon.ico'){
         counter.inc();
     }
-    const arr = queryParser(req.url);
-    const result = sort(arr);
-    res.end(result.toString())
+    const arr = randomArray(1000 * 15);
+    bblSort(arr);
+    res.end(arr.length.toString())
 })
 
 server.listen(3000)

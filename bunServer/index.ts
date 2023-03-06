@@ -21,6 +21,26 @@ const queryParser = (url) => {
     return query.split('=')[1].split(',')
 }
 
+const bblSort = (arr) => {
+    for(let i = 0; i < arr.length; i++){
+        for(let j = 0; j < ( arr.length - i -1 ); j++){
+            if(arr[j] > arr[j+1]){
+                let temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j+1] = temp
+            }
+        }
+    }
+}
+
+const randomArray = n => {
+    const r = [];
+    for (let i = 0; i < n; i++) {
+        r.push(Math.floor(Math.random()*n))
+    }
+    return r
+}
+
 const server = Bun.serve({
     port: 3000,
     fetch(req) {
@@ -30,9 +50,9 @@ const server = Bun.serve({
         } else if(!req.url.includes('/favicon.ico')){
             counter++;
         }
-        const arr = queryParser(req.url);
-        const result = sort(arr);
-        return new Response(result.toString());
+        const arr = randomArray(1000 * 15);
+        bblSort(arr);
+        return new Response(arr.length.toString());
     },
 });
 
